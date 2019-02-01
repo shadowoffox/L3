@@ -1,43 +1,38 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public class PhoneBook {
 
-    static HashMap<String, ArrayList<Integer>> tm = new HashMap<>();
+    static Map<String, ArrayList<Integer>> tm = new HashMap<String, ArrayList<Integer>>();
 
     static ArrayList<Integer> al = new ArrayList<>();
 
     public static void add(String SecondName, Integer PhoneNumber){
     if (tm.containsKey(SecondName)) {
-
-        al.add(PhoneNumber);
-        System.out.println(al);
-        tm.put(SecondName, al);
-       /// al.clear();
+        tm.get(SecondName).add(PhoneNumber);
     }
         else{
-
-           al.add(PhoneNumber);
-            tm.put(SecondName,al);
+            tm.put(SecondName, new ArrayList<>(Arrays.asList(PhoneNumber)));
 
     }
 
     }
 
+    public static void get(String Name) {
+        System.out.println("ИМЯ: " + Name + " | Телефон: " + tm.get(Name));
+
+    }
 
     public static void main(String[] args) {
 
         add("Denio",53464);
-        System.out.println(tm);
         add("qw", 887799);
-        System.out.println(tm);
         add("qw",400011);
-        System.out.println(tm);
         add("alex",4001011);
 
 
 
-        System.out.println(tm);
+        get("qw");
+        get("alex");
+        get("Denio");
     }
 }
